@@ -1,0 +1,45 @@
+- model: auth.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$216000$3xb9lOyxrJzB$+vYRQ8Uj7S+XCRbYlbd7p00odWtIzGBSZQz78BevpX0=
+    last_login: 2020-12-09 20:19:36.391434+00:00
+    is_superuser: true
+    username: admin
+    first_name: ''
+    last_name: ''
+    email: contact@fabienloffredo.com
+    is_staff: true
+    is_active: true
+    date_joined: 2020-12-09 20:15:14.189859+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$216000$S5QEisjwbbLl$02GhazrdmLIIz2Kk/sAtwBjqrX0QrZKe838qGSPKedA=
+    last_login: null
+    is_superuser: false
+    username: user1
+    first_name: ''
+    last_name: ''
+    email: contact@fabienloffredo.com
+    is_staff: false
+    is_active: true
+    date_joined: 2020-12-09 20:21:32.802943+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$216000$MxKZRmeJu5QT$rGb2QTZDHaEr7x9PHPPKw7ZeE5/QGV04p/RKz18Tw4E=
+    last_login: null
+    is_superuser: false
+    username: user2
+    first_name: ''
+    last_name: ''
+    email: contact@fabienloffredo.com
+    is_staff: false
+    is_active: true
+    date_joined: 2020-12-09 20:21:51.020715+00:00
+    groups: []
+    user_permissions: []
