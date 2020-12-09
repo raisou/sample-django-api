@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  postgresql:
+    image: postgres:13.1
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgresql:/var/lib/postgresql
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Dockerfile.backend
+    command: python manage.py runserver 0.0.0.0:8000
+    working_dir: '/app/'
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgresql
+    container_name: sample_api_back
+
+volumes:
+  postgresql:
