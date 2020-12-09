@@ -1,0 +1,81 @@
+import os
+from pathlib import Path
+
+from .defaults import *  # noqa
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DEBUG = True
+
+INSTALLED_APPS += (
+    # 'debug_toolbar',
+    # 'debug_panel',
+    # 'django_extensions'
+)
+
+MIDDLEWARE += (
+    # use this one if you are debugging ajax request
+    # 'debug_panel.middleware.DebugPanelMiddleware',
+    # use this one for normal debug
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
+
+# for django-debug-toolbar
+# INTERNAL_IPS = ('127.0.0.1', )
+
+ALLOWED_HOSTS = ['*']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': 'postgresql',
+        'PORT': '5432',
+    }
+}
+
+SECRET_KEY = '&0=lu%bl%d^ejt#s8bjw3z6!-bkq%z5=^vs#jkio6)a)df!6#t'
+
+LANGUAGE_CODE = 'fr-FR'
+
+TIME_ZONE = 'Europe/Paris'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/static/')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
+
+MEDIA_URL = "/media/"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s '
+                      '%(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        '': {
+            'level': 'INFO',
+            'handlers': ['console'],
+        },
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        }
+    },
+}
