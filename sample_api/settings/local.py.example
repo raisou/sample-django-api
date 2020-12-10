@@ -51,6 +51,10 @@ MEDIA_URL = "/media/"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+CELERY_BROKER_URL = "amqp://app_user:password@rabbitmq:5672/app_vhost"
+CELERY_BROKER_USE_SSL = False
+CELERY_TIMEZONE = TIME_ZONE
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

@@ -32,7 +32,21 @@ services:
       - "8000:8000"
     depends_on:
       - postgresql
+      - rabbitmq
     container_name: sample_api_back
+
+  celery:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Dockerfile.backend
+    command: celery -A sample_api worker -l info
+    working_dir: '/app/'
+    volumes:
+      - .:/app
+    depends_on:
+      - postgresql
+      - rabbitmq
+    container_name: sample_api_celery
 
 volumes:
   postgresql:
