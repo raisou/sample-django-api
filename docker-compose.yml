@@ -11,6 +11,15 @@ services:
     volumes:
       - postgresql:/var/lib/postgresql
 
+  rabbitmq:
+    image: rabbitmq:3.8.9-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+      - ./rabbitmq-definitions.json:/etc/rabbitmq/definitions.json
+
   backend:
     build:
       context: .
