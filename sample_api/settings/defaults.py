@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_spectacular',
+    'django_celery_results',
     'sample_api'
 ]
 
@@ -137,3 +138,15 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '0.0.0',
     'CONTACT': { 'email': 'contact@fabienloffredo.com' },
 }
+
+# Celery Configuration Options
+CELERY_BROKER_URL = "django://"
+CELERY_BROKER_USE_SSL = True
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60  # in seconds
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_PERSISTENT = True
+CELERY_ACCEPT_CONTENT = ['msgpack']
+CELERY_TASK_SERIALIZER = 'msgpack'
+CELERY_RESULT_SERIALIZER = 'msgpack'
