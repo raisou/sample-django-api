@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django_celery_results.models import TaskResult
+from django_celery_results.models import TaskResult as CeleryTask
 
 from .models import Task
 
@@ -7,9 +7,9 @@ from .models import Task
 class CeleryTaskSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = TaskResult
+        model = CeleryTask
         fields = (
-            'task_name', 'task_id', 'status', 'date_created', 'date_done'
+            'task_name', 'task_id', 'status', 'date_created', 'date_done', 'result'
         )
 
 
@@ -18,12 +18,17 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ('id', 'celery_task', 'user_id')
+        fields = ('id', 'celery_task', 'user')
 
 
 class TaskCreateSerializer(serializers.Serializer):
-    task_name = serializers.ChoiceField(Task.TASK_CHOICES)
-    param = serializers.CharField()
+    task_type = serializers.ChoiceField(Task.TASK_CHOICES)
+
+    def create(self, validated_data):
+        """
+        Create and return a new Task instance, given the validated data.
+        """
+        return Task.objects.create(**validated_data)
 
     def to_representation(self, instance):
         return TaskSerializer(instance).data
