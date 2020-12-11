@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django_celery_results.models import TaskResult as CeleryTask
+from celery import states
 
 
 class Task(models.Model):
@@ -16,22 +17,28 @@ class Task(models.Model):
 
     task_type = models.CharField(max_length=30, choices=TASK_CHOICES)
     celery_task = models.OneToOneField(CeleryTask, on_delete=models.PROTECT, editable=False)
-    user = models.ForeignKey(User, related_name="tasks", on_delete=models.PROTECT, editable=False)
-
-    def __str__(self):
-        return "{}-{}".format(self.task_type, self.time_start)
+    user = models.ForeignKey(
+        User, related_name="tasks", on_delete=models.PROTECT, editable=False)
 
     @property
-    def status(self):
-        from sample_api.celery import app
-        return app.AsyncResult(self.celery_task.task_id).state
+    def result(self):
+        return self.celery_task.result if self.celery_task.status == states.SUCCESS else None
 
     def run(self):
         from .tasks import (heavy_task, light_task, random_task)
 
-        if self.name == self.HEAVY:
-            heavy_task.delay()
-        elif self.name == self.LIGHT:
-            light_task.delay()
-        elif self.name == self.RANDOM:
-            random_task.delay()
+        if self.task_type == self.HEAVY:
+            res = heavy_task.delay()
+        elif self.task_type == self.LIGHT:
+            res = light_task.delay()
+        elif self.task_type == self.RANDOM:
+            res = random_task.delay()
+        else:
+            raise Exception('This task_type is not allowed')
+
+        # TODO to improve in real setup
+        self.celery_task, created = CeleryTask.objects.get_or_create(task_id=res.id)
+
+    def save(self, *args, **kwargs):
+        self.run()
+        super().save(*args, **kwargs)

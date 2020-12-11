@@ -18,5 +18,15 @@ class CeleryTaskAdmin(TaskResultAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('task_type', 'celery_task', 'user')
+    list_display = ('task_type', 'celery_task', 'status', 'user')
     list_per_page = 20
+    list_filter = ('user__username', 'task_type', 'celery_task__status')
+    search_fields = ('celery_task__task_id', 'user__username')
+
+    def status(self, obj):
+        return obj.celery_task.status
+
+    def save_model(self, request, obj, form, change):
+        if getattr(obj, 'user', None) is None:
+            obj.user = request.user
+        obj.save()
