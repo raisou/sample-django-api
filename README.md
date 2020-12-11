@@ -2,6 +2,8 @@
 
 Example of fast prototyping api
 
+[![Build Status](https://travis-ci.org/raisou/sample-api.svg?branch=master)](https://travis-ci.org/raisou/sample-api)
+
 ## LOCAL ENV WITH DOCKER (Linux)
 
 ### **1. Install Docker and Docker-compose**
