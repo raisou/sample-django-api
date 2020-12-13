@@ -37,3 +37,13 @@ class TaskViewSet(
         """
         instance = self.get_object()
         return Response({"result": instance.result})
+
+    @action(detail=True)
+    def stop(self, request, pk=None):
+        """
+        View to stop running task
+        """
+        instance = self.get_object()
+        instance.revoke()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
