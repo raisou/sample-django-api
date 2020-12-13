@@ -9,13 +9,13 @@ def main():
     """Run administrative tasks."""
     local_file = Path("sample_api/settings/local.py")
     if local_file.is_file():
-        os.environ.setdefault(
-            "DJANGO_SETTINGS_MODULE", "sample_api.settings.local")
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sample_api.settings.local")
     else:
         os.environ.setdefault(
-            "DJANGO_SETTINGS_MODULE", "sample_api.settings.production")
+            "DJANGO_SETTINGS_MODULE", "sample_api.settings.production"
+        )
     try:
-        from django.core.management import execute_from_command_line  # noqa
+        from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
@@ -28,5 +28,5 @@ def main():
         print(e)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

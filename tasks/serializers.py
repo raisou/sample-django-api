@@ -5,11 +5,15 @@ from .models import Task
 
 
 class CeleryTaskSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = CeleryTask
         fields = (
-            'task_name', 'task_id', 'status', 'date_created', 'date_done', 'result'
+            "task_name",
+            "task_id",
+            "status",
+            "date_created",
+            "date_done",
+            "result",
         )
 
 
@@ -18,7 +22,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ('id', 'execution_type', 'celery_task', 'user')
+        fields = ("id", "execution_type", "celery_task", "user")
 
 
 class TaskCreateSerializer(serializers.Serializer):

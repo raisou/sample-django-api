@@ -1,0 +1,2 @@
+class IncorrectTaskTypeException(Exception):
+    pass
