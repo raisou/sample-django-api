@@ -15,7 +15,16 @@ class Task(models.Model):
         (RANDOM, "Tâche à exécution à durée variable")
     )
 
+    SYNC = "sync"
+    ASYNC = "async"
+
+    EXECUTION_CHOICES = (
+        (SYNC, "Synchrone"),
+        (ASYNC, "Asynchrone")
+    )
+
     task_type = models.CharField(max_length=30, choices=TASK_CHOICES)
+    execution_type = models.CharField(max_length=30, choices=TASK_CHOICES, editable=False)
     celery_task = models.OneToOneField(CeleryTask, on_delete=models.PROTECT, editable=False)
     user = models.ForeignKey(
         User, related_name="tasks", on_delete=models.PROTECT, editable=False)
