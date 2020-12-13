@@ -18,9 +18,9 @@ class CeleryTaskAdmin(TaskResultAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('task_type', 'celery_task', 'status', 'user')
+    list_display = ('task_type', 'execution_type', 'celery_task', 'status', 'user')
     list_per_page = 20
-    list_filter = ('user__username', 'task_type', 'celery_task__status')
+    list_filter = ('user__username', 'task_type', 'execution_type', 'celery_task__status')
     search_fields = ('celery_task__task_id', 'user__username')
 
     def status(self, obj):

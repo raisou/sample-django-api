@@ -18,7 +18,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ('id', 'celery_task', 'user')
+        fields = ('id', 'execution_type', 'celery_task', 'user')
 
 
 class TaskCreateSerializer(serializers.Serializer):
