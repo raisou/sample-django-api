@@ -27,7 +27,7 @@ class Task(models.Model):
 
     task_type = models.CharField(max_length=30, choices=TASK_CHOICES)
     execution_type = models.CharField(
-        max_length=30, choices=TASK_CHOICES, default=ASYNC, editable=False
+        max_length=30, choices=EXECUTION_CHOICES, default=ASYNC, editable=False
     )
     celery_task = models.OneToOneField(
         CeleryTask, on_delete=models.PROTECT, editable=False
