@@ -11,8 +11,15 @@ class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'username', 'is_superuser', 'email', 'date_joined',
-            'heavy_calls', 'random_calls', 'light_calls', 'total_calls')
+            "username",
+            "is_superuser",
+            "email",
+            "date_joined",
+            "heavy_calls",
+            "random_calls",
+            "light_calls",
+            "total_calls",
+        )
 
     def get_total_calls(self, obj):
         return obj.heavy_calls + obj.random_calls + obj.light_calls

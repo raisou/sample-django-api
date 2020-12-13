@@ -8,13 +8,11 @@ from .models import Task
 
 
 class TaskResultFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = TaskResult
 
 
 class TaskFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = Task
 

@@ -10,16 +10,16 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '-f',
-            '--force',
-            action='store_true',
-            dest='force',
+            "-f",
+            "--force",
+            action="store_true",
+            dest="force",
             default=False,
-            help="Used to deploy recette or dev. Don't use it in production!"
+            help="Used to deploy recette or dev. Don't use it in production!",
         )
 
     def handle(self, *args, **options):
-        force = options.get('force', False)
+        force = options.get("force", False)
 
         if not force:
             confirm = input(
@@ -28,15 +28,16 @@ class Command(BaseCommand):
     [DANGER] This will IRREVERSIBLY DESTROY all data currently in the database.
     [DANGER] Are you sure you want to do this?
     [DANGER]
-    [DANGER] Type 'yes' to continue, or 'no' to cancel: """)
+    [DANGER] Type 'yes' to continue, or 'no' to cancel: """
+            )
 
-            if confirm != 'yes':
+            if confirm != "yes":
                 return
 
         self.log("--- Emptying database ------------------")
         self.drop_tables()
         self.log("--- Creating database structure --------")
-        call_command('migrate', interactive=False)
+        call_command("migrate", interactive=False)
 
         self.log("--- Loading base data ------------------")
         self.loaddata(*self.FIXTURES)
@@ -46,12 +47,11 @@ class Command(BaseCommand):
         self.stdout.write(message)
 
     def drop_tables(self):
-        """Drop all database tables
-        """
+        """Drop all database tables"""
         tables = connection.introspection.table_names()
         cursor = connection.cursor()
         for table in tables:
             cursor.execute("DROP TABLE IF EXISTS %s CASCADE;" % table)
 
     def loaddata(self, *args):
-        call_command('loaddata', *args)
+        call_command("loaddata", *args)
