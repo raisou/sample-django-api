@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django_celery_results.models import TaskResult as CeleryTask
 from celery import states
 
+from sample_api.celery import app
+
 from .exceptions import IncorrectTaskTypeException
 from .tasks import heavy_task, light_task, random_task
 
@@ -43,6 +45,9 @@ class Task(models.Model):
             if self.celery_task.status == states.SUCCESS
             else None
         )
+
+    def revoke(self):
+        app.AsyncResult(self.celery_task.task_id).revoke(terminate=True)
 
     def run_task(self, sync=False):
         if self.task_type == self.HEAVY:
