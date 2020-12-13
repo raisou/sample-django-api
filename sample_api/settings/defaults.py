@@ -125,6 +125,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Task max duration to play task in sync mode in seconds
+TASK_TRESHOLD = 2
+
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_PERMISSION_CLASSES': (
@@ -148,5 +151,5 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60  # in seconds
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_RESULT_PERSISTENT = True
-CELERY_ACCEPT_CONTENT = ['msgpack']
+CELERY_ACCEPT_CONTENT = ['msgpack', 'json']
 CELERY_TASK_SERIALIZER = 'msgpack'
