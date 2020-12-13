@@ -4,6 +4,13 @@ Example of fast prototyping api
 
 [![Build Status](https://travis-ci.org/raisou/sample-api.svg?branch=master)](https://travis-ci.org/raisou/sample-api)
 
+## Main points
+
+- /api/ : Rest Api
+- /admin/ : Path to django admin (need to be superuser)
+- /docs/swagger/ : Swagger doc api (main points need to have an authenticated user)
+- /docs/redoc/ : Redoc doc api (main points need to have an authenticated user)
+
 ## LOCAL ENV WITH DOCKER (Linux)
 
 ### **1. Install Docker and Docker-compose**
@@ -14,8 +21,6 @@ On Ubuntu pay attention on user rights, it is not recommended to run it as root
 The first time you'll use docker-compose it will build and download docker images, it can take a long time.
 
 ### **2. Clone this repository**
-
-Replace [trigram] by your trigram.
 
 ```bash
 git clone git@github.com:raisou/sample-api.git
@@ -39,7 +44,7 @@ docker-compose pull && docker-compose up --build -d
 
 ```bash
 cd /path/to/project/
-docker exec -it sample_api_back python manage.py reset_db
+docker exec -it sample_api_back python manage.py reset_db -f
 ```
 
 ### **To stop env**
