@@ -1,11 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group
 from django_celery_results.admin import TaskResultAdmin
 
 from .models import (Task, CeleryTask)
 
 
-admin.site.unregister(Group)
 admin.site.unregister(CeleryTask)
 
 

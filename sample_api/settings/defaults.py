@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'django_celery_results',
     'tasks',
+    'clients',
     'sample_api'
 ]
 
