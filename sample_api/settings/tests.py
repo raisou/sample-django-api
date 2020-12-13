@@ -34,3 +34,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 MEDIA_URL = "/media/"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Task are always run in sync mode for testing purposes
+CELERY_TASK_ALWAYS_EAGER = True
+CELERY_TASK_EAGER_PROPAGATES = True

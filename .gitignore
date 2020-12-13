@@ -4,3 +4,4 @@
 /media
 local.py
 .vscode
+local_tests.py

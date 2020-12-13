@@ -55,15 +55,17 @@ class Task(models.Model):
 
     def save(self, *args, **kwargs):
         # get average time execution for task
-        avg_diff_qs = Task.objects.filter(
+        avg_diff = Task.objects.filter(
             task_type=self.task_type,
             celery_task__date_done__isnull=False) \
             .aggregate(
                 avg_diff=Avg(
-                    F('celery_task__date_done') - F('celery_task__date_created')))
-        avg_time_diff = avg_diff_qs.get('avg_diff').total_seconds()
+                    F('celery_task__date_done') - F('celery_task__date_created'))) \
+            .get('avg_diff')
+        avg_time_diff = avg_diff.total_seconds() if avg_diff else 0
         # Run task in async mode if average time is under a treshold
-        if settings.TASK_TRESHOLD < avg_time_diff:
+        # We check value 0 foor the case with empty data
+        if avg_time_diff == 0 or settings.TASK_TRESHOLD < avg_time_diff:
             self.run_task()
             self.execution_type = self.ASYNC
         else:
