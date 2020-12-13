@@ -12,7 +12,7 @@ def heavy_task(name='tasks.heavy_task'):
 
 @app.task
 def light_task(name='tasks.light_task'):
-    sleep(1,  2)  # Do some background jobs
+    sleep(randint(1,  2))  # Do some background jobs
     return 'light task executed successfully'
 
 
