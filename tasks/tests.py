@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from sample_api.factories import UserFactory
+from clients.factories import UserFactory
 
 
 class TaskAPITestCase(APITestCase):

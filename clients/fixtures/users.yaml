@@ -22,7 +22,7 @@
     username: user1
     first_name: ''
     last_name: ''
-    email: contact@fabienloffredo.com
+    email: email@example.com
     is_staff: false
     is_active: true
     date_joined: 2020-12-09 20:21:32.802943+00:00
@@ -37,7 +37,7 @@
     username: user2
     first_name: ''
     last_name: ''
-    email: contact@fabienloffredo.com
+    email: foo@bar.com
     is_staff: false
     is_active: true
     date_joined: 2020-12-09 20:21:51.020715+00:00
