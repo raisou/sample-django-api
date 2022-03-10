@@ -3,7 +3,6 @@ from pathlib import Path
 
 from .defaults import *  # noqa
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True

@@ -1,7 +1,40 @@
-*.pyc
-/env
-/static
-/media
-local.py
-.vscode
-local_tests.py
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+*.bak/
+
+# pyenv
+.python-version
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# profiling
+/reports
+
+# Django stuff:
+*.log
+sample_api/settings/*local.py
+db.sqlite3
+db.sqlite3-journal
+
+.vscode/settings.json
