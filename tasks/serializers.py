@@ -1,5 +1,5 @@
-from rest_framework import serializers
 from django_celery_results.models import TaskResult as CeleryTask
+from rest_framework import serializers
 
 from .models import Task
 

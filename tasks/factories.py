@@ -1,6 +1,6 @@
 import factory
-from factory.fuzzy import FuzzyChoice
 from django_celery_results.models import TaskResult
+from factory.fuzzy import FuzzyChoice
 
 from clients.factories import UserFactory
 

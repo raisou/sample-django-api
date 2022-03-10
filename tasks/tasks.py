@@ -1,5 +1,5 @@
-from time import sleep
 from random import randint
+from time import sleep
 
 from sample_api.celery import app
 
