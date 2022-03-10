@@ -21,8 +21,8 @@
     ],
     "policies": [],
     "queues": [],
-    "rabbit_version": "3.8.9",
-    "rabbitmq_version": "3.8.9",
+    "rabbit_version": "3.9.13",
+    "rabbitmq_version": "3.9.13",
     "topic_permissions": [],
     "users": [
         {

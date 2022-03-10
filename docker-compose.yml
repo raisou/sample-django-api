@@ -2,16 +2,18 @@ version: "3"
 
 services:
   postgresql:
-    image: postgres:13.1
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=postgres
     volumes:
       - postgresql:/var/lib/postgresql
 
   rabbitmq:
-    image: rabbitmq:3.8.9-management
+    image: rabbitmq:3.9.13-management
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -24,7 +26,6 @@ services:
       context: .
       dockerfile: ./dockerfiles/Dockerfile.backend
     command: python manage.py runserver 0.0.0.0:8000
-    working_dir: "/app/"
     volumes:
       - .:/app
     ports:
@@ -39,7 +40,6 @@ services:
       context: .
       dockerfile: ./dockerfiles/Dockerfile.backend
     command: celery -A sample_api worker -l info
-    working_dir: "/app/"
     volumes:
       - .:/app
     depends_on:
