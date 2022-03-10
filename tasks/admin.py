@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django_celery_results.admin import TaskResultAdmin
 
-from .models import Task, CeleryTask
-
+from .models import CeleryTask, Task
 
 admin.site.unregister(CeleryTask)
 

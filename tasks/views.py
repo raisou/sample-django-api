@@ -1,10 +1,10 @@
-from rest_framework.response import Response
-from rest_framework import viewsets, mixins
+from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from .models import Task
-from .serializers import TaskSerializer, TaskCreateSerializer
+from .serializers import TaskCreateSerializer, TaskSerializer
 
 
 class TaskViewSet(

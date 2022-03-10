@@ -1,8 +1,7 @@
-from django.urls import path, include
+from django.urls import include, path
 
-from tasks.urls import urlpatterns as tasks_urlpatterns
 from clients.urls import urlpatterns as clients_urlpatterns
-
+from tasks.urls import urlpatterns as tasks_urlpatterns
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
