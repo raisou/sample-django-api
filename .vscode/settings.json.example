@@ -1,0 +1,18 @@
+{
+  "python.pythonPath": "${workspaceFolder}/.venv/bin/python",
+  "python.envFile": "${workspaceFolder}/.venv",
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  // "python.linting.mypyEnabled": true,
+  // "python.linting.mypyCategorySeverity.error": "Error",
+  "python.linting.enabled": true,
+  "python.formatting.provider": "black",
+  "restructuredtext.languageServer.disabled": true,
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.rulers": [88]
+  },
+  // "editor.formatOnSave": false,
+}
