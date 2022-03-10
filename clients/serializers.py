@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
 
 
@@ -21,5 +23,6 @@ class ClientSerializer(serializers.ModelSerializer):
             "total_calls",
         )
 
+    @extend_schema_field(OpenApiTypes.INT)
     def get_total_calls(self, obj):
         return obj.heavy_calls + obj.random_calls + obj.light_calls

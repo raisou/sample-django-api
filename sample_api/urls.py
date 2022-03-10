@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 from django.views.generic import RedirectView
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -9,7 +9,6 @@ from drf_spectacular.views import (
 )
 
 from . import api_urls
-
 
 urlpatterns = [
     path("docs/", RedirectView.as_view(url="/docs/swagger/"), name="docs"),

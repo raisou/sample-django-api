@@ -3,7 +3,6 @@ from pathlib import Path
 
 from celery import Celery
 
-
 # set the default Django settings module for the 'celery' program.
 local_file = Path("sample_api/settings/local.py")
 if local_file.is_file():

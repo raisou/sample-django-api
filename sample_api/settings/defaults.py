@@ -27,6 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # Application definition
 
@@ -93,7 +94,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",

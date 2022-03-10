@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "sample_api"
+version = "1.0.0"
+description = ""
+authors = ["Fabien Loffredo <contact@fabienloffredo.com>"]
+
+[tool.poetry.dependencies]
+python = "~3.8"
+Django = {version = "3.2.12", extras = ["argon2"]}
+pytz = "~2021.3"
+PyYAML = "~6.0"
+psycopg2-binary = "~2.9.3"
+celery = {extras = ["msgpack"], version = "~5.2.3"}
+djangorestframework = "~3.13.1"
+django-celery-results = "~2.3.0"
+drf-spectacular = "~0.21.2"
+
+[tool.poetry.dev-dependencies]
+django-debug-toolbar = "~3.2.4"
+django-debug-toolbar-request-history = "~0.1.3"
+django-extensions = "~3.1.3"
+ipython = "~8.0.1"
+flake8 = "~4.0.1"
+black = "~22.1.0"
+isort = "~5.10.1"
+factory-boy = "~3.2.1"
+
+[tool.isort]
+multi_line_output = 3
+line_length = 88
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

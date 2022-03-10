@@ -1,9 +1,9 @@
-from django.db import models
-from django.conf import settings
-from django.db.models import Avg, F
-from django.contrib.auth.models import User
-from django_celery_results.models import TaskResult as CeleryTask
 from celery import states
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.db import models
+from django.db.models import Avg, F
+from django_celery_results.models import TaskResult as CeleryTask
 
 from sample_api.celery import app
 

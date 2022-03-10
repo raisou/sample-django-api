@@ -2,8 +2,6 @@
 
 Example of fast prototyping api
 
-[![Build Status](https://travis-ci.org/raisou/sample-api.svg?branch=master)](https://travis-ci.org/raisou/sample-api)
-
 ## Main points
 
 - /api/ : Rest Api
