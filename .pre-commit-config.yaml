@@ -1,0 +1,51 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff
+        description: "Run 'ruff' for extremely fast Python linting"
+        entry: ruff check --force-exclude
+        language: python
+        types_or: [python, pyi]
+        args: []
+        require_serial: true
+        additional_dependencies: []
+        minimum_pre_commit_version: "2.9.2"
+      - id: ruff-format
+        name: ruff-format
+        description: "Run 'ruff format' for extremely fast Python formatting"
+        entry: ruff format --force-exclude
+        language: python
+        types_or: [python, pyi]
+        args: []
+        require_serial: true
+        additional_dependencies: []
+        minimum_pre_commit_version: "2.9.2"
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        language: python
+        entry: mypy
+        require_serial: true
+        args:
+          [
+            --config,
+            ./mypy.ini,
+          ]
+        types: [python]
+        exclude: '(test_*)|(settings.py)|(manage.py)|(migrations)'
+  - repo: local
+    hooks:
+      - id: detect-secrets
+        name: detect secrets
+        language: python
+        entry: detect-secrets-hook
+        args:
+          [
+            "--disable-plugin",
+            "Base64HighEntropyString",
+            "--exclude-lines",
+            '"hash": "[0-9a-f]+"',
+          ]
+        exclude: (^static/|^fixtures/|requirements.*|\.json$|test.*)

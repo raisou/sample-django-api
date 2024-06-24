@@ -1,7 +1,7 @@
 - model: auth.user
   pk: 1
   fields:
-    password: pbkdf2_sha256$216000$3xb9lOyxrJzB$+vYRQ8Uj7S+XCRbYlbd7p00odWtIzGBSZQz78BevpX0=
+    password: pbkdf2_sha256$216000$3xb9lOyxrJzB$+vYRQ8Uj7S+XCRbYlbd7p00odWtIzGBSZQz78BevpX0= # pragma: allowlist secret
     last_login: 2020-12-09 20:19:36.391434+00:00
     is_superuser: true
     username: admin
@@ -16,7 +16,7 @@
 - model: auth.user
   pk: 2
   fields:
-    password: pbkdf2_sha256$216000$S5QEisjwbbLl$02GhazrdmLIIz2Kk/sAtwBjqrX0QrZKe838qGSPKedA=
+    password: pbkdf2_sha256$216000$S5QEisjwbbLl$02GhazrdmLIIz2Kk/sAtwBjqrX0QrZKe838qGSPKedA= # pragma: allowlist secret
     last_login: null
     is_superuser: false
     username: user1
@@ -31,7 +31,7 @@
 - model: auth.user
   pk: 3
   fields:
-    password: pbkdf2_sha256$216000$MxKZRmeJu5QT$rGb2QTZDHaEr7x9PHPPKw7ZeE5/QGV04p/RKz18Tw4E=
+    password: pbkdf2_sha256$216000$MxKZRmeJu5QT$rGb2QTZDHaEr7x9PHPPKw7ZeE5/QGV04p/RKz18Tw4E= # pragma: allowlist secret
     last_login: null
     is_superuser: false
     username: user2

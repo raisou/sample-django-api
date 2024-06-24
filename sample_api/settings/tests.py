@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 from .defaults import *  # noqa
@@ -26,9 +25,9 @@ LANGUAGE_CODE = "fr-FR"
 
 TIME_ZONE = "Europe/Paris"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/static/")
+STATIC_ROOT = BASE_DIR / "static/static/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/media/")
+MEDIA_ROOT = BASE_DIR / "static/media/"
 
 MEDIA_URL = "/media/"
 

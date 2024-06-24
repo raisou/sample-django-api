@@ -1,2 +1,2 @@
-class IncorrectTaskTypeException(Exception):
+class IncorrectTaskTypeError(Exception):
     pass

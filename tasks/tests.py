@@ -8,27 +8,27 @@ from .models import Task
 
 
 class TaskAPITestCase(APITestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.user = UserFactory.create()
 
-    def test_anonymous_list_tasks(self):
+    def test_anonymous_list_tasks(self) -> None:
         response = self.client.get(reverse("tasks-list"))
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_anonymous_create_tasks(self):
+    def test_anonymous_create_tasks(self) -> None:
         response = self.client.post(reverse("tasks-list"), {"task_type": Task.HEAVY})
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_user_list_tasks(self):
+    def test_user_list_tasks(self) -> None:
         self.client.force_authenticate(user=self.user)
 
         response = self.client.get(reverse("tasks-list"))
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_user_create_light_task(self):
+    def test_user_create_light_task(self) -> None:
         self.client.force_authenticate(user=self.user)
 
         data = {"task_type": Task.LIGHT}
@@ -43,7 +43,7 @@ class TaskAPITestCase(APITestCase):
         # 2nd run is ok (coz these task duration is fixed)
         self.assertEqual(response.data.get("execution_type"), Task.SYNC)
 
-    def test_user_create_heavy_task(self):
+    def test_user_create_heavy_task(self) -> None:
         self.client.force_authenticate(user=self.user)
 
         data = {"task_type": Task.HEAVY}
@@ -53,7 +53,7 @@ class TaskAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data.get("execution_type"), Task.ASYNC)
 
-    def test_user_create_random_task(self):
+    def test_user_create_random_task(self) -> None:
         self.client.force_authenticate(user=self.user)
 
         data = {"task_type": Task.RANDOM}

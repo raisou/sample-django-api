@@ -1,3 +1,6 @@
+from argparse import ArgumentParser
+from typing import Any
+
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.db import connection
@@ -6,9 +9,9 @@ from django.db import connection
 class Command(BaseCommand):
     help = "[DANGER] Reset database and load demo data into database"
 
-    FIXTURES = ["users"]
+    FIXTURES = ("users",)
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: ArgumentParser) -> None:
         parser.add_argument(
             "-f",
             "--force",
@@ -18,7 +21,7 @@ class Command(BaseCommand):
             help="Used to deploy recette or dev. Don't use it in production!",
         )
 
-    def handle(self, *args, **options):
+    def handle(self, *_args: Any, **options: Any) -> None:
         force = options.get("force", False)
 
         if not force:
@@ -42,16 +45,16 @@ class Command(BaseCommand):
         self.log("--- Loading base data ------------------")
         self.loaddata(*self.FIXTURES)
 
-    def log(self, message):
+    def log(self, message: str) -> None:
         """Displays a message via stdout."""
         self.stdout.write(message)
 
-    def drop_tables(self):
+    def drop_tables(self) -> None:
         """Drop all database tables"""
         tables = connection.introspection.table_names()
         cursor = connection.cursor()
         for table in tables:
-            cursor.execute("DROP TABLE IF EXISTS %s CASCADE;" % table)
+            cursor.execute(f"DROP TABLE IF EXISTS {table} CASCADE;")
 
-    def loaddata(self, *args):
+    def loaddata(self, *args: Any) -> None:
         call_command("loaddata", *args)
