@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import logging
 import os
 import sys
 
@@ -10,8 +11,8 @@ def main():
 
     try:
         execute_from_command_line(sys.argv)
-    except ImportError as e:
-        print(e)
+    except ImportError:
+        logging.exception("Error found")
 
 
 if __name__ == "__main__":

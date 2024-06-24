@@ -28,11 +28,11 @@ class TaskSerializer(serializers.ModelSerializer):
 class TaskCreateSerializer(serializers.Serializer):
     task_type = serializers.ChoiceField(Task.TASK_CHOICES)
 
-    def create(self, validated_data):
+    def create(self, validated_data: dict) -> Task:
         """
         Create and return a new Task instance, given the validated data.
         """
         return Task.objects.create(**validated_data)
 
-    def to_representation(self, instance):
+    def to_representation(self, instance: Task) -> dict:
         return TaskSerializer(instance).data

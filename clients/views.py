@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.db.models import Count, Q
+from django.db.models import Count, Q, QuerySet
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
@@ -12,7 +12,7 @@ class ClientListAPIView(generics.ListAPIView):
     permission_classes = (IsAdminUser,)
     serializer_class = ClientSerializer
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[User]:
         return User.objects.annotate(
             heavy_calls=Count("tasks", filter=Q(tasks__task_type=Task.HEAVY)),
             random_calls=Count("tasks", filter=Q(tasks__task_type=Task.RANDOM)),
