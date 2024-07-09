@@ -4,8 +4,8 @@ jobs:
   build-and-test:
     working_directory: ~/app
     docker:
-      - image: cimg/python:3.10
-      - image: circleci/postgres:13
+      - image: cimg/python:3.12
+      - image: cimg/postgres:15.7
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres  # pragma: allowlist secret
@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
-            poetry install --no-ansi
+            poetry install --no-ansi --no-root --only=main,dev
 
       # Save's the specified path as a cache. This is the path Poetry uses to install the dependencies
       # So if you don't install anything new, this folder won't change and the cache will be effective

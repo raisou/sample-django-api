@@ -5,7 +5,7 @@ description = ""
 authors = ["Fabien Loffredo <contact@fabienloffredo.com>"]
 
 [tool.poetry.dependencies]
-python = "~3.10"
+python = "~3.12"
 Django = { version = "4.2.13", extras = ["argon2"] }
 PyYAML = "~6.0"
 psycopg = { extras = ["binary"], version = "~3.2.1" }
