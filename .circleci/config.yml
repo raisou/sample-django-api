@@ -8,7 +8,6 @@ jobs:
       - image: cimg/postgres:15.7
         environment:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres  # pragma: allowlist secret
           POSTGRES_DB: postgres
     steps:
       - checkout
@@ -31,6 +30,11 @@ jobs:
           key: deps-{{ checksum "poetry.lock" }}
           paths:
             - /home/circleci/.cache/pypoetry/virtualenvs
+
+      - run:
+          name: Run pre-commits
+          command: |
+            poetry run pre-commit run --all-files
 
       - run:
           name: Run tests
