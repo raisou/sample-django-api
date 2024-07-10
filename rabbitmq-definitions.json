@@ -7,46 +7,42 @@
         {
             "configure": ".*",
             "read": ".*",
-            "user": "app_user",
-            "vhost": "app_vhost",
+            "user": "guest",
+            "vhost": "/",
             "write": ".*"
         },
         {
             "configure": ".*",
             "read": ".*",
-            "user": "guest",
-            "vhost": "/",
+            "user": "app_user",
+            "vhost": "app_vhost",
             "write": ".*"
         }
     ],
     "policies": [],
     "queues": [],
-    "rabbit_version": "3.9.13",
-    "rabbitmq_version": "3.9.13",
+    "rabbitmq_version": "3.13.4",
+    "rabbit_version": "3.13.4",
     "topic_permissions": [],
     "users": [
         {
             "hashing_algorithm": "rabbit_password_hashing_md5",
+            "limits": {},
             "name": "app_user",
             "password_hash": "r55SI5LHFNScjOnqRCRG6ovaVbQ=",
-            "tags": ""
+            "tags": []
         },
         {
             "hashing_algorithm": "rabbit_password_hashing_md5",
+            "limits": {},
             "name": "guest",
             "password_hash": "qaa0EWD2NP2bId+TtbZ+xEFk7Pc=",
-            "tags": "administrator"
+            "tags": [
+                "administrator"
+            ]
         }
     ],
     "vhosts": [
-        {
-            "limits": [],
-            "metadata": {
-                "description": "",
-                "tags": []
-            },
-            "name": "app_vhost"
-        },
         {
             "limits": [],
             "metadata": {
@@ -54,6 +50,14 @@
                 "tags": []
             },
             "name": "/"
+        },
+        {
+            "limits": [],
+            "metadata": {
+                "description": "",
+                "tags": []
+            },
+            "name": "app_vhost"
         }
     ]
 }
