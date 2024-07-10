@@ -1,21 +1,23 @@
-import os
 from pathlib import Path
+from typing import Any
 
 from .defaults import *  # noqa
+from .defaults import INSTALLED_APPS, MIDDLEWARE
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
 
-INSTALLED_APPS += (  # noqa
+INSTALLED_APPS += (
     "debug_toolbar",
     "django_extensions",
 )
 
-MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)  # noqa
+MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
+
 
 # for django-debug-toolbar (allow all remote origin)
-def custom_show_toolbar(self):  # noqa
+def custom_show_toolbar(request: Any) -> bool:  # noqa: ARG001
     return True
 
 
@@ -32,7 +34,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
         "USER": "postgres",
-        "PASSWORD": "postgres",
+        "PASSWORD": "postgres",  # pragma: allowlist secret
         "HOST": "postgresql",
         "PORT": "5432",
     }
@@ -44,31 +46,16 @@ LANGUAGE_CODE = "fr-FR"
 
 TIME_ZONE = "Europe/Paris"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/static/")
+STATIC_ROOT = BASE_DIR / "static/static/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/media/")
+MEDIA_ROOT = BASE_DIR / "static/media/"
 
 MEDIA_URL = "/media/"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-CELERY_BROKER_URL = "amqp://app_user:password@rabbitmq:5672/app_vhost"
+CELERY_BROKER_URL = (
+    "amqp://app_user:password@rabbitmq:5672/app_vhost"  # pragma: allowlist secret
+)
 CELERY_BROKER_USE_SSL = False
 CELERY_TIMEZONE = TIME_ZONE
-
-DEBUG_TOOLBAR_PANELS = [
-    "ddt_request_history.panels.request_history.RequestHistoryPanel",  # Here it is
-    "debug_toolbar.panels.versions.VersionsPanel",
-    "debug_toolbar.panels.timer.TimerPanel",
-    "debug_toolbar.panels.settings.SettingsPanel",
-    "debug_toolbar.panels.headers.HeadersPanel",
-    "debug_toolbar.panels.request.RequestPanel",
-    "debug_toolbar.panels.sql.SQLPanel",
-    "debug_toolbar.panels.templates.TemplatesPanel",
-    "debug_toolbar.panels.staticfiles.StaticFilesPanel",
-    "debug_toolbar.panels.cache.CachePanel",
-    "debug_toolbar.panels.signals.SignalsPanel",
-    "debug_toolbar.panels.logging.LoggingPanel",
-    "debug_toolbar.panels.redirects.RedirectsPanel",
-    "debug_toolbar.panels.profiling.ProfilingPanel",
-]

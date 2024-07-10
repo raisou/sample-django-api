@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgresql:
-    image: postgres:13
+    image: postgres:15
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -13,12 +13,12 @@ services:
       - postgresql:/var/lib/postgresql
 
   rabbitmq:
-    image: rabbitmq:3.9.13-management
+    image: rabbitmq:3.13.4-management
     ports:
       - "5672:5672"
       - "15672:15672"
     volumes:
-      - ./rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./rabbitmq-definitions.json:/etc/rabbitmq/definitions.json
 
   backend:

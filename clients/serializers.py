@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib.auth.models import User
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema_field
@@ -24,5 +26,5 @@ class ClientSerializer(serializers.ModelSerializer):
         )
 
     @extend_schema_field(OpenApiTypes.INT)
-    def get_total_calls(self, obj):
+    def get_total_calls(self, obj: Any) -> int:
         return obj.heavy_calls + obj.random_calls + obj.light_calls

@@ -25,7 +25,7 @@ SECRET_KEY = ""
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: list[str] = []
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
@@ -153,3 +153,4 @@ CELERY_RESULT_BACKEND = "django-db"
 CELERY_RESULT_PERSISTENT = True
 CELERY_ACCEPT_CONTENT = ["msgpack", "json"]
 CELERY_TASK_SERIALIZER = "msgpack"
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
